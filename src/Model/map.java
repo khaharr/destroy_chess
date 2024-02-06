@@ -45,8 +45,9 @@ public class map {
 
     public static void afficherMap(int[][] mat) {
         if (!active_affichage) {
-            return; // Si l'affichage est désactivé, quitte la méthode sans rien afficher
+            return;// Si l'affichage est désactivé, quitte la méthode sans rien afficher
         }
+        else {
         for (int i = 0; i < mat.length; i++) {
             for (int j = 0; j < mat[i].length; j++) {
                 if (mat[i][j] == -1) {
@@ -58,21 +59,23 @@ public class map {
             }
             // Nouvelle ligne pour chaque ligne de la matrice
             System.out.println();
-        }
+        }}
     }
 
-    public static void effacerMap(int[][] generatedMap) {
+    public static int[][] effacerMap(int[][] generatedMap) {
         // Réinitialise les valeurs de la carte à 0
-        // Réinitialise les valeurs de la carte à 0 (ou à la valeur que vous considérez comme "vide")
         for (int i = 0; i < generatedMap.length; i++) {
             for (int j = 0; j < generatedMap[i].length; j++) {
-                generatedMap[i][j] = 0; // Remplacez 0 par la valeur que vous considérez comme "vide"
+                generatedMap[i][j] = 0; // Remplacez 0 par la valeur que vous considérez comme vide
             }
         }
         // Désactive l'affichage de la carte
         active_affichage = false;
         System.out.println("La carte a été effacée.");
+        // Retourne le tableau modifié
+        return generatedMap;
     }
+
 
 }
 
