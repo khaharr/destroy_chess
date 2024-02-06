@@ -43,32 +43,29 @@ public class map {
         }
     }
 
-    public static void afficherMap(int[][] mat) {
+    public static void afficherMap(int[][] mat, int playerX, int playerY) {
         if (!active_affichage) {
-            return;// Si l'affichage est désactivé, quitte la méthode sans rien afficher
-        }
-        else {
-        for (int i = 0; i < mat.length; i++) {
-            for (int j = 0; j < mat[i].length; j++) {
-                if (mat[i][j] == -1) {
-                    // Remplace -1 par le caractère spécial pour la case vide
-                    System.out.print("□" + "\t");
-                } else {
-                    System.out.print(mat[i][j] + "\t");
+            return; // Si l'affichage est désactivé, quitte la méthode sans rien afficher
+        } else {
+            for (int i = 0; i < mat.length; i++) {
+                for (int j = 0; j < mat[i].length; j++) {
+                    if (i == playerY && j == playerX) {
+                        System.out.print("●" + "\t"); // Affiche le joueur
+                    } else if (mat[i][j] == -1) {
+                        // Remplace -1 par le caractère spécial pour la case vide
+                        System.out.print("▮" + "\t");
+                    } else {
+                        System.out.print(mat[i][j] + "\t");
+                    }
                 }
+                // Nouvelle ligne pour chaque ligne de la matrice
+                System.out.println();
             }
-            // Nouvelle ligne pour chaque ligne de la matrice
-            System.out.println();
-        }}
+        }
     }
 
+
     public static int[][] effacerMap(int[][] generatedMap) {
-        // Réinitialise les valeurs de la carte à 0
-        for (int i = 0; i < generatedMap.length; i++) {
-            for (int j = 0; j < generatedMap[i].length; j++) {
-                generatedMap[i][j] = 0; // Remplacez 0 par la valeur que vous considérez comme vide
-            }
-        }
         // Désactive l'affichage de la carte
         active_affichage = false;
         System.out.println("La carte a été effacée.");
