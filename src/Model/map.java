@@ -1,3 +1,5 @@
+package Model;
+
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,7 +10,7 @@ public class map {
     public static int[][] generate() {
 
 
-        // je creer la matrice ou je vais positionner toute les case en 0 avec les delimitations de la map avec 2
+        // je creer la matrice ou je vais positionner toute les case en 0 avec les delimitations de la Model.map avec 2
         int[][] mat = {
                 {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
                 {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
