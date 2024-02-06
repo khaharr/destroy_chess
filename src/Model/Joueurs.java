@@ -19,8 +19,29 @@ public class Joueurs {
         this.score = score;
     }
 
+
+    /* Création des getters et setters pour pouvoir récupérer et modifier les attributs des joueurs, qui ont été
+    encapsulés (définis en privé pour pas qu'ils ne soient manipulés en dehors de la classe sans ça) */
+
+    public String getCouleur() {
+        return couleur;
+    }
+
+    public void setCouleur(String couleur) {
+        this.couleur = couleur;
+    }
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+
+
     /* Création d'une méthode pour permettre aux joueurs de se déplacer, en faisant varier leurs coordonnées x et y
-    dans la carte, lorsqu'ils pressent une certaine touche. */
+        dans la carte, lorsqu'ils pressent une certaine touche. */
     public void déplacementsJoueurs (int ancienneCoordX, int ancienneCoordY, int coordX, int coordY) {
         //
     }
