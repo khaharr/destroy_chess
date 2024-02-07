@@ -11,46 +11,56 @@ public class Carte {
         return AffichageActif;
     }
     public static int[][] Generer() {
-
-
-        // je creer la matrice ou je vais positionner toute les case en 0 avec les delimitations de la Model.map avec 2
-        int[][] Plateau = {
-                {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-                {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-                {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-                {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-                {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-                {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-                {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-                {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-                {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-                {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-                {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-                {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-        };
-
-        List<Joueurs> joueurs = statDeJeu.getJoueur();
-        System.out.println(joueurs.size());
-        for (int i = 0; i < joueurs.size() ; i++) {
-            System.out.println(joueurs.get(i).getJoueurY());
-            Plateau[joueurs.get(i).getJoueurY()][joueurs.get(i).getJoueurX()] = joueurs.get(i).getID();
-        }
-            return Plateau;
-    }
+        //Création d'une matrice de 12 lignes et 13 colonnes
+            int[][] plateau = new int[12][13];
+                //Remplissage de la matrice selon les spécifications
+                for (int x = 0; x < plateau.length; x++) {
+                    for (int y = 0; y < plateau[x].length; y++) {
+                        if ((x == 0) | (x == 11) | (y == 0) | (y == 12)) {
+                            // Remplir les bords avec des 2
+                            plateau[x][y] = 2;
+                        } else {
+                            //sinon Remplir le reste avec des 0
+                            plateau[x][y] = 0;
+                        }
+                    }
+                }
+                return plateau;
+            }
     
-    public static void AfficherMap(int[][] Plateau) {
-        // Si l'affichage est désactivé, quitte la méthode sans rien afficher
-        if (!AffichageActif) {}
+ 
+                      
+    public static void AfficherMap(int[][] Plateau, int JoueurX, int JoueurY) {
+        char[] Lettre = {'a', 'b', 'c', 'd', 'e','f','g','h','i', 'j'};
+        int [] Chiffre = {1,2,3,4,5,6,7,8,9,10,11};
+        if (!active_affichage) {
+            // Si l'affichage est désactivé, quitte la méthode sans rien afficher
+        } else {
+            // ca va parcourir ligne par ligne la carte en faisant une boucle dans une boucle
 
-        else {
-            // Va parcourir ligne par ligne la carte grâce à une boucle dans une boucle
-            for (int colonnes = 0; colonnes < Plateau.length; colonnes++) {
-                for (int lignes = 0; lignes < Plateau[colonnes].length; lignes++) {
-                    if (Plateau[colonnes][lignes] == 0) {
+            for (int Ligne = 0; Ligne < Plateau.length; Ligne++) {
+                if(Ligne > 0 & Ligne < 11){
+                    System.out.print(Lettre[Ligne-1]);
+                }
+
+                for (int Colonnes = 0; Colonnes < Plateau[Ligne].length; Colonnes++) {
+                    if(Ligne == 0 && Colonnes > 0 & Colonnes < 12){
+                        System.out.print(Chiffre[Colonnes-1]);
+                    }
+                    if (Ligne == JoueurY && Colonnes == JoueurX) {
+                        // Affiche le joueur en remplaçant la case par
+
+                        System.out.print(Couleurs.Mettre(6)+"●" +Couleurs.Mettre(0)+ "\t");
+                    } else if (Plateau[Ligne][Colonnes] == 0) {
+
                         // Remplace 0 par le caractère spécial pour la case vide
                         System.out.print("▮" + "\t");
-                    } else {
-                        System.out.print(Plateau[colonnes][lignes] + "\t");
+                    } else if (Plateau[Ligne][Colonnes] == 2) {
+                        // Remplace 2 par un vide pour retirer les 2
+                        System.out.print(""+"\t");
+                    }else {
+                        System.out.print(Plateau[Ligne][Colonnes] + "\t");
+                      
                     }
                 }
                 // Nouvelle ligne pour chaque ligne de la matrice
