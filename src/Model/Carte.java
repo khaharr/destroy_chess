@@ -52,18 +52,21 @@ public class Carte {
                 for (int Colonnes = 0; Colonnes < Plateau[Ligne].length; Colonnes++) {
                     if(Ligne == 0 && Colonnes > 0 & Colonnes < 12){
                         System.out.print(Chiffre[Colonnes-1]);
+                        System.out.print("\t");
                     }
-//                    if (Ligne == JoueurY && Colonnes == JoueurX) {
-//                        // Affiche le joueur en remplaçant la case par
 //
-//                        System.out.print(Couleurs.Mettre(6)+"●" +Couleurs.Mettre(0)+ "\t");
+//
+//
                     /*}*/ else if (Plateau[Ligne][Colonnes] == 0) {
 
                         // Remplace 0 par le caractère spécial pour la case vide
                         System.out.print("▮" + "\t");
                     } else if (Plateau[Ligne][Colonnes] == 2) {
                         // Remplace 2 par un vide pour retirer les 2
-                        System.out.print(""+"\t");
+                        System.out.print("" + "\t");
+                    }else if (Plateau[Ligne][Colonnes] >= 5 && Plateau[Ligne][Colonnes] <= 8)
+                    {
+                        System.out.print(Couleurs.Mettre(6)+"●"+Couleurs.Mettre(0) + "\t");
                     }else {
                         System.out.print(Plateau[Ligne][Colonnes] + "\t");
                       
