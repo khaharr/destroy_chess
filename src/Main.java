@@ -1,79 +1,66 @@
-import Model.Carte;
-import Model.Menu;
+//import Model.Carte;
+//import Model.Menu;
+import Model.*;
 
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        // Génère la carte
-        int[][] generatedMap = Carte.Generer();
 
+        int tour = 0;
+        // Génère la carte
 
         Menu.MenuDuJeu();
 
-        // Coordonnées initiales du joueur
-        int playerX = 6;
-        int playerY = 5;
+        // Instanciation du premier joueur
+        Joueurs Joueur1 = new Joueurs("mag", 4, 6, 5, 5);
+        statDeJeu.setJoueurs(Joueur1);
+
+        Joueurs Joueur2 = new Joueurs("meg", 3, 3, 9, 6);
+        statDeJeu.setJoueurs(Joueur2);
+        System.out.println(statDeJeu.getJoueur());
+
+
+        int[][] CarteGeneree = Carte.Generer();
 
         // Boucle de jeu
         Scanner scanner = new Scanner(System.in);
         boolean execution_jeu = true;
         while (execution_jeu) {
 
-           // generatedMap = Carte.EffacerCarte(generatedMap);
+            // CarteGeneree = Carte.EffacerCarte(CarteGeneree);
 
             // Affiche la carte avec le joueur (donc ces coordonne sur la matrice )
-            Carte.AfficherMap(generatedMap, playerX, playerY);
+            Carte.AfficherMap(CarteGeneree);
 
             // Attend une entrée clavier pour le déplacement du joueur
             System.out.println("Déplacez-vous avec les touches Z (haut), S (bas), Q (gauche), D (droite)  ");
+            System.out.println(statDeJeu.getJoueur().get(tour).getCouleur());
             String input = scanner.nextLine().toUpperCase();
             switch (input) {
                 case "Z":
-                    // Vérifie si le déplacement vers le haut est possible en vérifiant si la case au-dessus du joueur n'est pas un mur.
-                    if (generatedMap[playerY - 1][playerX] != 2) {
-                        // Réinitialise la case actuelle du joueur à 0 dans la carte.
-                        generatedMap[playerY][playerX] = 0;
-                        //Déplace le joueur vers le haut en diminuant sa coordonnée Y.
-                        playerY--;
-                    }
-                    break;
-                case "S":
-                    // Vérifie si le déplacement vers le BAs est possible en vérifiant si la case en dessus du joueur n'est pas un mur.
-                    if (generatedMap[playerY + 1][playerX] != 2) {
-                        // Réinitialise la case actuelle du joueur à 0 dans la carte.
-                        generatedMap[playerY][playerX] = 0;
-                        //Déplace le joueur vers le bas en augmentant sa coordonnée Y.
-                        playerY++;
-                    }
+                    CarteGeneree = statDeJeu.getJoueur().get(tour).DeplacementsJoueurs(CarteGeneree, 0, -1);
                     break;
                 case "Q":
-                    // Vérifie si le déplacement vers la gauche est possible en vérifiant si la case a gauche du joueur n'est pas un mur.
-                    if (generatedMap[playerY][playerX - 1] != 2) {
-                        // Réinitialise la case actuelle du joueur à 0 dans la carte.
-                        generatedMap[playerY][playerX] = 0;
-                        //Déplace le joueur vers la gauche en diminuant sa coordonnée Y.
-                        playerX--;
-                    }
+                    CarteGeneree = statDeJeu.getJoueur().get(tour).DeplacementsJoueurs(CarteGeneree, -1, 0);
+                    break;
+                case "S":
+                    CarteGeneree = statDeJeu.getJoueur().get(tour).DeplacementsJoueurs(CarteGeneree, 0, 1);
                     break;
                 case "D":
-                    // Vérifie si le déplacement vers la droite est possible en vérifiant si la case a droite du joueur n'est pas un mur.
-                    if (generatedMap[playerY][playerX + 1] != 2) {
-                        // Réinitialise la case actuelle du joueur à 0 dans la carte.
-                        generatedMap[playerY][playerX] = 0;
-                        //Déplace le joueur vers la droite en augmentant sa coordonnée Y.
-                        playerX++;
-                    }
+                    CarteGeneree = statDeJeu.getJoueur().get(tour).DeplacementsJoueurs(CarteGeneree, 1, 0);
                     break;
-                    // Déclare un cas pour l'entrée "EXIT", qui arrête le jeu en changeant la valeur de execution_jeu à false.
-                case "EXIT":
-                    execution_jeu = false;
-                    break;
-                    //Déclare un cas par défaut qui est exécuté lorsque l'entrée de l'utilisateur ne correspond à aucun des cas précédents.
+                //Déclare un cas par défaut qui est exécuté lorsque l'entrée de l'utilisateur ne correspond à aucun des cas précédents.
                 default:
-                    System.out.println("!!!");
+                    System.out.println("Veuillez ne choisir que parmis les choix qui vous sont proposés!!!");
                     break;
+            }
+            // vérification si on doit relancer les tours si le nombre de tour atteind le nombre de joueur on recommence
+            if(statDeJeu.getJoueur().size() == tour +1){
+                tour = 0;
+            } else {
+                tour++;
             }
         }
     }

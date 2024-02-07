@@ -16,9 +16,9 @@ public class Menu {
             OuvrirMenuDuJeu = false;
             System.out.println("        ✃ＤＥＳＴＲＯＹ ＴＨＥ ＧＡＲＤＥＮ ✃ ");
             System.out.println("          ―――――――――――――――――――――――――――");
-            System.out.println("             Jouer ");
-            System.out.println("             Règles du jeu ");
-            System.out.println("             Quitter");
+            System.out.println("             1 - Jouer ");
+            System.out.println("             2 - Règles du jeu ");
+            System.out.println("             3 - Quitter");
             System.out.println("          ―――――――――――――――――――――――――――");
             Scanner scanner = new Scanner(System.in);
             try {

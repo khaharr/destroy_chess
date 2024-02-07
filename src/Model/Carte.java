@@ -1,7 +1,15 @@
 package Model;
 
+import com.sun.tools.javac.Main;
+
+import java.util.List;
+
 public class Carte {
-    private static boolean active_affichage = true;
+    private static boolean AffichageActif = true;
+
+    public static boolean getAffichageActif(){
+        return AffichageActif;
+    }
     public static int[][] Generer() {
         //Création d'une matrice de 12 lignes et 13 colonnes
             int[][] plateau = new int[12][13];
@@ -19,8 +27,9 @@ public class Carte {
                 }
                 return plateau;
             }
-
-
+    
+ 
+                      
     public static void AfficherMap(int[][] Plateau, int JoueurX, int JoueurY) {
         char[] Lettre = {'a', 'b', 'c', 'd', 'e','f','g','h','i', 'j'};
         int [] Chiffre = {1,2,3,4,5,6,7,8,9,10,11};
@@ -51,6 +60,7 @@ public class Carte {
                         System.out.print(""+"\t");
                     }else {
                         System.out.print(Plateau[Ligne][Colonnes] + "\t");
+                      
                     }
                 }
                 // Nouvelle ligne pour chaque ligne de la matrice
@@ -62,7 +72,7 @@ public class Carte {
 
     public static int[][] EffacerCarte(int[][] generatedMap) {
         // Désactive l'affichage de la carte
-        active_affichage = false;
+        AffichageActif = false;
         System.out.println("La carte a été effacée.");
         // Retourne le tableau modifié
         return generatedMap;
