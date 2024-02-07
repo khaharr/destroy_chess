@@ -3,6 +3,8 @@ package Model;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import static Model.Carte.EffacerCarte;
+
 public class Menu {
 
     // Fonction qui permet de parcourir le menu du jeu //
@@ -22,7 +24,7 @@ public class Menu {
             try {
                 int choix = scanner.nextInt();
                 if (choix == 1){
-                    AffichageJoueur();
+                    SelectionPseudoEtCouleur();
                 }
                 else if(choix == 2){
                     ReglesDuJeu();
@@ -46,9 +48,28 @@ public class Menu {
 
     }
     //Permettre au joueur de définir un pseudo ainsi que sa couleur//
-    public static void AffichageJoueur(){
-        System.out.println("Veuillez choisir votre pseudo jeune jardinier !");
-        System.out.println("    ―――――――――――――――――――――――――――――――――――");
+
+    public static void SelectionPseudoEtCouleur(){
+        boolean VerifPseudo = false;
+        do {
+            System.out.println("Veuillez choisir votre pseudo jeune jardinier !");
+            System.out.println("    ―――――――――――――――――――――――――――――――――――");
+
+            //Enregistrer le pseudo du joueur//
+            Scanner pseudo = new Scanner(System.in);
+            String PseudoChoisi = pseudo.next();
+
+            //Vérifier si le pseudo est > 1 et < 11 caractères//
+            if (PseudoChoisi.length() < 11 && PseudoChoisi.length() > 1) {
+                System.out.println("Pseudo validé avec succés !");
+                System.out.println(Couleurs.Mettre(6)+PseudoChoisi+Couleurs.Mettre(0));
+                VerifPseudo = false;
+            } else {
+                System.out.println("Veuillez choisir un pseudo entre 2 à 10 caractères maximum !");
+                VerifPseudo = true;
+            }
+        }while(VerifPseudo);
+
     }
     //Visualiser les règles du jeu //
     public static void ReglesDuJeu() {

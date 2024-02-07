@@ -40,8 +40,10 @@ public class Carte {
                     }
                     if (Ligne == JoueurY && Colonnes == JoueurX) {
                         // Affiche le joueur en remplaçant la case par
-                        System.out.print(Couleurs.Mettre(3)+"●" +Couleurs.Mettre(0)+ "\t");
+
+                        System.out.print(Couleurs.Mettre(6)+"●" +Couleurs.Mettre(0)+ "\t");
                     } else if (Plateau[Ligne][Colonnes] == 0) {
+
                         // Remplace 0 par le caractère spécial pour la case vide
                         System.out.print("▮" + "\t");
                     } else if (Plateau[Ligne][Colonnes] == 2) {

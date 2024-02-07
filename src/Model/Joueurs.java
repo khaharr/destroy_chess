@@ -46,9 +46,13 @@ public class Joueurs {
 
     /* Création d'une méthode pour permettre aux joueurs de détruire une case de leur choix après s'être déplacés,
     en rentrant un nom de case constitué d'une lettre et d'un chiffre  */
-    public void détruireCases() {
-        //
-    }
+
+
+
+
+
+
+
 
 
 
