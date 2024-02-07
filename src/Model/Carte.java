@@ -29,25 +29,26 @@ public class Carte {
         } else {
             // ca va parcourir ligne par ligne la carte en faisant une boucle dans une boucle
 
-            for (int y = 0; y < Plateau.length; y++) {
-                if(y > 0 & y < 11){
-                    System.out.print(Lettre[y-1]);
+            for (int Ligne = 0; Ligne < Plateau.length; Ligne++) {
+                if(Ligne > 0 & Ligne < 11){
+                    System.out.print(Lettre[Ligne-1]);
                 }
-                for (int x = 0; x < Plateau[y].length; x++) {
-                    if(x > 0 & x < 12){
-                        System.out.print(Chiffre[x-1]);
+
+                for (int Colonnes = 0; Colonnes < Plateau[Ligne].length; Colonnes++) {
+                    if(Ligne == 0 && Colonnes > 0 & Colonnes < 12){
+                        System.out.print(Chiffre[Colonnes-1]);
                     }
-                    if (y == JoueurY && x == JoueurX) {
+                    if (Ligne == JoueurY && Colonnes == JoueurX) {
                         // Affiche le joueur en remplaçant la case par
                         System.out.print(Couleurs.Mettre(3)+"●" +Couleurs.Mettre(0)+ "\t");
-                    } else if (Plateau[y][x] == 0) {
+                    } else if (Plateau[Ligne][Colonnes] == 0) {
                         // Remplace 0 par le caractère spécial pour la case vide
                         System.out.print("▮" + "\t");
-                    } else if (Plateau[y][x] == 2) {
+                    } else if (Plateau[Ligne][Colonnes] == 2) {
                         // Remplace 2 par un vide pour retirer les 2
                         System.out.print(""+"\t");
                     }else {
-                        System.out.print(Plateau[y][x] + "\t");
+                        System.out.print(Plateau[Ligne][Colonnes] + "\t");
                     }
                 }
                 // Nouvelle ligne pour chaque ligne de la matrice
