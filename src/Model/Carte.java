@@ -3,43 +3,42 @@ package Model;
 public class Carte {
     private static boolean active_affichage = true;
     public static int[][] Generer() {
+        //Création d'une matrice de 12 lignes et 13 colonnes
+            int[][] plateau = new int[12][13];
+                //Remplissage de la matrice selon les spécifications
+                for (int x = 0; x < plateau.length; x++) {
+                    for (int y = 0; y < plateau[x].length; y++) {
+                        if ((x == 0) | (x == 11) | (y == 0) | (y == 12)) {
+                            // Remplir les bords avec des 2
+                            plateau[x][y] = 2;
+                        } else {
+                            //sinon Remplir le reste avec des 0
+                            plateau[x][y] = 0;
+                        }
+                    }
+                }
+                return plateau;
+            }
 
 
-        // je creer la matrice ou je vais positionner toute les case en 0 avec les delimitations de la Model.map avec 2
-        int[][] Plateau = {
-                {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-                {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-                {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-                {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-                {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-                {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-                {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-                {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-                {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-                {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-                {2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2},
-                {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
-        };
-
-            return Plateau;
-    }
-    
     public static void AfficherMap(int[][] Plateau, int JoueurX, int JoueurY) {
         if (!active_affichage) {
             // Si l'affichage est désactivé, quitte la méthode sans rien afficher
-            return;
         } else {
             // ca va parcourir ligne par ligne la carte en faisant une boucle dans une boucle
-            for (int i = 0; i < Plateau.length; i++) {
-                for (int j = 0; j < Plateau[i].length; j++) {
-                    if (i == JoueurY && j == JoueurX) {
+            for (int y = 0; y < Plateau.length; y++) {
+                for (int x = 0; x < Plateau[y].length; x++) {
+                    if (y == JoueurY && x == JoueurX) {
                         // Affiche le joueur en remplaçant la case par
                         System.out.print(Couleurs.Mettre(3)+"●" +Couleurs.Mettre(0)+ "\t");
-                    } else if (Plateau[i][j] == 0) {
+                    } else if (Plateau[y][x] == 0) {
                         // Remplace 0 par le caractère spécial pour la case vide
                         System.out.print("▮" + "\t");
-                    } else {
-                        System.out.print(Plateau[i][j] + "\t");
+                    } else if (Plateau[y][x] == 2) {
+                        // Remplace 2 par un vide pour retirer les 2
+                        System.out.print("");
+                    }else {
+                        System.out.print(Plateau[y][x] + "\t");
                     }
                 }
                 // Nouvelle ligne pour chaque ligne de la matrice
