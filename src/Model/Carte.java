@@ -1,7 +1,15 @@
 package Model;
 
+import com.sun.tools.javac.Main;
+
+import java.util.List;
+
 public class Carte {
-    private static boolean active_affichage = true;
+    private static boolean AffichageActif = true;
+
+    public static boolean getAffichageActif(){
+        return AffichageActif;
+    }
     public static int[][] Generer() {
 
 
@@ -21,25 +29,28 @@ public class Carte {
                 {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
         };
 
+        List<Joueurs> joueurs = statDeJeu.getJoueur();
+        System.out.println(joueurs.size());
+        for (int i = 0; i < joueurs.size() ; i++) {
+            System.out.println(joueurs.get(i).getJoueurY());
+            Plateau[joueurs.get(i).getJoueurY()][joueurs.get(i).getJoueurX()] = joueurs.get(i).getID();
+        }
             return Plateau;
     }
     
-    public static void AfficherMap(int[][] Plateau, int JoueurX, int JoueurY) {
-        if (!active_affichage) {
-            // Si l'affichage est désactivé, quitte la méthode sans rien afficher
-            return;
-        } else {
-            // ca va parcourir ligne par ligne la carte en faisant une boucle dans une boucle
-            for (int i = 0; i < Plateau.length; i++) {
-                for (int j = 0; j < Plateau[i].length; j++) {
-                    if (i == JoueurY && j == JoueurX) {
-                        // Affiche le joueur en remplaçant la case par
-                        System.out.print(Couleurs.Mettre(3)+"●" +Couleurs.Mettre(0)+ "\t");
-                    } else if (Plateau[i][j] == 0) {
+    public static void AfficherMap(int[][] Plateau) {
+        // Si l'affichage est désactivé, quitte la méthode sans rien afficher
+        if (!AffichageActif) {}
+
+        else {
+            // Va parcourir ligne par ligne la carte grâce à une boucle dans une boucle
+            for (int colonnes = 0; colonnes < Plateau.length; colonnes++) {
+                for (int lignes = 0; lignes < Plateau[colonnes].length; lignes++) {
+                    if (Plateau[colonnes][lignes] == 0) {
                         // Remplace 0 par le caractère spécial pour la case vide
                         System.out.print("▮" + "\t");
                     } else {
-                        System.out.print(Plateau[i][j] + "\t");
+                        System.out.print(Plateau[colonnes][lignes] + "\t");
                     }
                 }
                 // Nouvelle ligne pour chaque ligne de la matrice
@@ -51,7 +62,7 @@ public class Carte {
 
     public static int[][] EffacerCarte(int[][] generatedMap) {
         // Désactive l'affichage de la carte
-        active_affichage = false;
+        AffichageActif = false;
         System.out.println("La carte a été effacée.");
         // Retourne le tableau modifié
         return generatedMap;
