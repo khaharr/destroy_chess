@@ -34,7 +34,7 @@ public class Carte {
                 for (int j = 0; j < Plateau[i].length; j++) {
                     if (i == JoueurY && j == JoueurX) {
                         // Affiche le joueur en remplaçant la case par
-                        System.out.print(Couleurs.Mettre(3)+"●" +Couleurs.Mettre(0)+ "\t");
+                        System.out.print(Couleurs.Mettre(6)+"●" +Couleurs.Mettre(0)+ "\t");
                     } else if (Plateau[i][j] == 0) {
                         // Remplace 0 par le caractère spécial pour la case vide
                         System.out.print("▮" + "\t");
