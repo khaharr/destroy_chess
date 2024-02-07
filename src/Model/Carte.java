@@ -40,6 +40,7 @@ public class Carte {
         return plateau;
     }
 
+
     // Méthode pour afficher la carte
     public static void AfficherMap(int[][] Plateau) {
         char[] Lettre = {'a', 'b', 'c', 'd', 'e','f','g','h','i', 'j'};
@@ -67,8 +68,13 @@ public class Carte {
                         // Remplace 2 par un vide pour retirer les 2
                         System.out.print("" + "\t");
                     } else if (Plateau[Ligne][Colonnes] >= 5 && Plateau[Ligne][Colonnes] <= 8) {
-                        // Affichage des joueurs avec des couleurs spécifiques
-                        System.out.print(Couleurs.Mettre(6)+"●"+Couleurs.Mettre(0) + "\t");
+                        // Affichage des joueurs avec leurs couleurs respectives Si l'ID du joueur correspond à la valeur dans la case de la matrice, cela signifie que c'est la position d'un joueur.
+                        for (Joueurs joueur : statDeJeu.getJoueur()) {
+                            if (joueur.getID() == Plateau[Ligne][Colonnes]) {
+                                System.out.print(Couleurs.Mettre(joueur.getCouleur()) +"●" + Couleurs.Mettre(0) + "\t");
+                                break;
+                            }
+                        }
                     } else {
                         // Affichage des autres éléments du plateau
                         System.out.print(Plateau[Ligne][Colonnes] + "\t");
@@ -79,6 +85,7 @@ public class Carte {
             }
         }
     }
+
 
     // Méthode pour effacer la carte
     public static int[][] EffacerCarte(int[][] generatedMap) {

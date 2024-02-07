@@ -1,6 +1,7 @@
 package Model;
 
 //Création d'un objet Joueurs
+// Création d'un objet Joueurs
 public class Joueurs {
 
     private String Pseudo;
@@ -20,6 +21,12 @@ public class Joueurs {
         JoueurY =  joueurY;
         this.id = id;
     }
+
+    // Méthode pour obtenir le pseudo du joueur
+    public String getPseudo() {
+        return this.Pseudo;
+    }
+
 
 
     /* Création des getters et setters pour pouvoir récupérer et modifier les attributs des joueurs, qui ont été
@@ -75,6 +82,8 @@ public class Joueurs {
     public void DétruireCases() {
         //
     }
+
+
 
 /*if (x == Joueurs.getJoueurX() && y == Joueurs.getJoueurY()) {
         // Affiche le joueur en remplaçant la case par un point de couleur
