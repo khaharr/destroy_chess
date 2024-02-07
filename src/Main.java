@@ -1,27 +1,25 @@
-import Model.map;
+import Model.Carte;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        // Génère la cartze
-        int[][] generatedMap = map.generate();
+        // Génère la carte
+        int[][] generatedMap = Carte.Generer();
 
         // Coordonnées initiales du joueur
-        int playerX = 5;
+        int playerX = 6;
         int playerY = 5;
 
         // Boucle de jeu
         Scanner scanner = new Scanner(System.in);
         boolean execution_jeu = true;
         while (execution_jeu) {
-            //generatedMap = map.effacerMap(generatedMap);
-            //appelle la méthode effacerZero de la classe map pour remplacer les zéros dans la carte par un caractère spécial.
-            map.effacerZero(generatedMap);
+
+           // generatedMap = Carte.EffacerCarte(generatedMap);
+
             // Affiche la carte avec le joueur (donc ces coordonne sur la matrice )
-            map.afficherMap(generatedMap, playerX, playerY);
-
-
+            Carte.AfficherMap(generatedMap, playerX, playerY);
 
             // Attend une entrée clavier pour le déplacement du joueur
             System.out.println("Déplacez-vous avec les touches Z (haut), S (bas), Q (gauche), D (droite)  ");
@@ -69,7 +67,7 @@ public class Main {
                     break;
                     //Déclare un cas par défaut qui est exécuté lorsque l'entrée de l'utilisateur ne correspond à aucun des cas précédents.
                 default:
-                    System.out.println("CHEF TA ESSAYER DE TRICHER C EST VRAIMENT PAS COOL! ->(zsqd)<- ");
+                    System.out.println("!!!");
                     break;
             }
         }
