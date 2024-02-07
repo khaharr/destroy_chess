@@ -7,9 +7,7 @@ public class Joueurs {
     private String pseudo;
     private String couleur;
     private int score;
-    private int ancienneCoordX;
     private int coordX;
-    private int ancienneCoordY;
     private int coordY;
 
     // Création d'un constructeur Joueurs pour pouvoir instancier des joueurs
@@ -42,7 +40,7 @@ public class Joueurs {
 
     /* Création d'une méthode pour permettre aux joueurs de se déplacer, en faisant varier leurs coordonnées x et y
         dans la carte, lorsqu'ils pressent une certaine touche. */
-    public void déplacementsJoueurs (int ancienneCoordX, int ancienneCoordY, int coordX, int coordY) {
+    public void déplacementsJoueurs (int JoueurX, int JoueurY) {
         //
     }
 
