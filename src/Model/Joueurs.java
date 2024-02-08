@@ -6,11 +6,12 @@ public class Joueurs {
 
     private String NomUtilisateur;
     private int Couleur;
+
     private int Score;
     private int JoueurX;
     private int JoueurY;
 
-    private boolean Estmort = false ;
+    private static boolean Estmort = false ;
     private int id;
 
     // Création d'un constructeur Joueurs pour pouvoir instancier des joueurs
@@ -18,14 +19,18 @@ public class Joueurs {
         this.NomUtilisateur = NomUtilisateur;
         this.Couleur = couleur;
         this.Score = 0;
-        JoueurX =  joueurX;
-        JoueurY =  joueurY;
+        this.JoueurX =  joueurX;
+        this.JoueurY =  joueurY;
         this.id = id;
     }
 
     // Méthode pour obtenir le pseudo du joueur
     public String getNomUtilisateur() {
         return this.NomUtilisateur;
+    }
+
+    public boolean getEstMort() {
+        return Estmort;
     }
     /* Création des getters et setters pour pouvoir récupérer et modifier les attributs des joueurs, qui ont été
     encapsulés (définis en privé pour pas qu'ils ne soient manipulés en dehors de la classe sans ça) */
@@ -96,7 +101,7 @@ public class Joueurs {
                 Carte[JoueurY+1][JoueurX]!=0 &&
                 Carte[JoueurY][JoueurX +1]!=0 &&
                 Carte[JoueurY][JoueurX -1]!=0) {
-            Estmort = true ;
+                Estmort = true ;
 
         }
 

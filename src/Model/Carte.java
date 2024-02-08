@@ -32,8 +32,8 @@ public class Carte {
         }
 
         // Placement des joueurs sur la carte
-        for (int NombreDuJoueur = 0; NombreDuJoueur < joueurs.size(); NombreDuJoueur++) {
-            plateau[joueurs.get(NombreDuJoueur).getJoueurY()][joueurs.get(NombreDuJoueur).getJoueurX()] = joueurs.get(NombreDuJoueur).getID();
+        for (Joueurs joueur : joueurs) {
+            plateau[joueur.getJoueurY()][joueur.getJoueurX()] = joueur.getID();
         }
         return plateau;
     }
