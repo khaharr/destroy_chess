@@ -129,6 +129,8 @@ public class Menu {
     // Quitter le jeu et le programme
     public static void QuitterLeJeu(){
         System.out.println("Vous avez quitté le jeu DESTROY THE GARDENER SPACE");
+        //au moment de quitter sa va enregistrer le score dans scores.txt
+        Score.SauvegarderScoresDansFichier("scores.txt");
         System.exit(0);
     }
 
