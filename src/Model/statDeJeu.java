@@ -14,6 +14,7 @@ public class statDeJeu {
     public static List<Joueurs> RecupererJoueurs(){
         return ListeDeJoueurs;
     }
+
     // compte le nombre de joueur en vie sur le plateau//
     public  static int CompteJoueurPlateau() {
         int nombre = 0;
@@ -21,11 +22,13 @@ public class statDeJeu {
             if (!ListeDeJoueurs.get(i).getEstMort()) {
                 nombre++;
             }
-            return nombre;
         }
         return nombre;
     }
 
+    public static void EffacerListeJoueurs() {
+        ListeDeJoueurs.clear();
+    }
 
 
     // Méthode pour ajouter un joueur à la liste

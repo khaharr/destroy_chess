@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 // Import de la méthode EffacerCarte de la classe Carte depuis le package Model
 import static Model.Carte.EffacerCarte;
+import static Model.statDeJeu.RecupererJoueurs;
 
 // Définition de la classe Menu
 public class Menu {
@@ -29,7 +30,7 @@ public class Menu {
             try {
                 int choix = scanner.nextInt();
                 if (choix == 1){
-                    SelectionPseudoEtCouleur();
+                    break;
                 }
                 else if(choix == 2){
                     ReglesDuJeu();
@@ -75,31 +76,32 @@ public class Menu {
     }
 
     public  static String EntrerPseudo(){
-        String pseudoJoueur;
         Scanner scanner1 = new Scanner(System.in);
+        boolean NomUtilisateurExist = false;
         do {
             System.out.println("Entrez le pseudo du joueur   (entre 2 et 10 caractères) :");
-            pseudoJoueur = scanner1.nextLine();
+            String pseudoJoueur = scanner1.nextLine().toLowerCase();
             if (pseudoJoueur.length() < 2 || pseudoJoueur.length() > 10) {
                 System.out.println("Le pseudo doit contenir entre 2 et 10 caractères !");
             }else {
-                return pseudoJoueur;
+                if(!statDeJeu.RecupererJoueurs().isEmpty()){
+                    for(Joueurs joueur : statDeJeu.RecupererJoueurs())
+                    {
+                        if (!pseudoJoueur.trim().equalsIgnoreCase(joueur.getNomUtilisateur().trim())){
+                            NomUtilisateurExist = true;
+                        } else {
+                            System.out.println("Nom d'utilisateur déjà utilisé");
+                        }
+                    }
+                } else {
+                    return pseudoJoueur;
+                }
+                if(NomUtilisateurExist){
+                    return pseudoJoueur;
+                }
             }
-        } while (pseudoJoueur.length() < 2 || pseudoJoueur.length() > 10);
-        return null;
+        } while (true);
     }
-
-
-    // Permettre au joueur de définir un pseudo ainsi que sa couleur
-    public static void SelectionPseudoEtCouleur(){
-        // Déclaration des variables
-        boolean VerifPseudo1 = false;
-        boolean VerifPseudo2 = false;
-        String PseudoChoisi1;
-        String PseudoChoisi2;
-
-    }
-
 
     // Visualiser les règles du jeu
     public static void ReglesDuJeu() {

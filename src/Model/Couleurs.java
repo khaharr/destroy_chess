@@ -2,14 +2,14 @@ package Model;
 
 public class Couleurs {
 
-    int Defaut = 0;
-    int Noir = 1;
-    int Rouge = 2;
-    int Vert = 3;
-    int Jaune = 4;
-    int Bleu = 5;
-    int Mauve = 6;
-    int Ciel = 7;
+    public static int Defaut = 0;
+    public static int Noir = 1;
+    public static int Rouge = 2;
+    public static int Vert = 3;
+    public static int Jaune = 4;
+    public static int Bleu = 5;
+    public static int Mauve = 6;
+    public static int Ciel = 7;
     public static int Blanc = 8;
 
     /**
