@@ -54,6 +54,42 @@ public class Menu {
         }while (OuvrirMenuDuJeu);
     }
 
+    //Calculer le nombre de joueur dans un partie//
+    public static int NombreJoueurPartie(){
+        boolean Verif = true;
+        do {
+            System.out.println("Tapez le nombre de joueur présent dans la partie ( entre 2 et 4 maximum)");
+            Scanner NbJoueur = new Scanner(System.in);
+            try {
+                int choix = NbJoueur.nextInt();
+                if (choix >= 2 && choix <= 4) {
+                    Verif = false;
+                    return choix;
+                }
+            }
+            catch (Exception e) {
+
+            }
+        }while(Verif);
+        return 0;
+    }
+
+    public  static String EntrerPseudo(){
+        String pseudoJoueur;
+        Scanner scanner1 = new Scanner(System.in);
+        do {
+            System.out.println("Entrez le pseudo du joueur   (entre 2 et 10 caractères) :");
+            pseudoJoueur = scanner1.nextLine();
+            if (pseudoJoueur.length() < 2 || pseudoJoueur.length() > 10) {
+                System.out.println("Le pseudo doit contenir entre 2 et 10 caractères !");
+            }else {
+                return pseudoJoueur;
+            }
+        } while (pseudoJoueur.length() < 2 || pseudoJoueur.length() > 10);
+        return null;
+    }
+
+
     // Permettre au joueur de définir un pseudo ainsi que sa couleur
     public static void SelectionPseudoEtCouleur(){
         // Déclaration des variables
