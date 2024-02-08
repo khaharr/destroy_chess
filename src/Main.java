@@ -43,7 +43,9 @@ public class Main {
 
         for (int i = 0; i < NombreJoueur; i++) {
             String Pseudo = Menu.EntrerPseudo();
-            statDeJeu.DefinirJoueurs(new Joueurs(Pseudo,4,placementX.get(i),placementY.get(i),i+5));
+            Joueurs joueur = new Joueurs(Pseudo,4,placementX.get(i),placementY.get(i),i+5);
+            statDeJeu.DefinirJoueurs(joueur);
+            Score.AjouterUtilisateur(joueur);
 //            System.out.print(NouveauJoueur.getJoueurX());
         }
 
@@ -62,6 +64,14 @@ public class Main {
             {
                 System.out.println("Nous avons un vainqueur");
                 CarteGeneree = null;
+                //Score.IncrementerScore(joueurActif, 5);
+                for (Joueurs joueur : statDeJeu.RecupererJoueurs()) {
+                    if(joueur.getEstMort()){
+                        Score.IncrementerScore(joueur, 2);
+                    } else {
+                        Score.IncrementerScore(joueur, 5);
+                    }
+                }
                 statDeJeu.EffacerListeJoueurs();
                 game();
                 break;
