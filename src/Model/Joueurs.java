@@ -1,5 +1,6 @@
 package Model;
 
+
 //Création d'un objet Joueurs
 public class Joueurs {
 
@@ -9,6 +10,7 @@ public class Joueurs {
     private int JoueurX;
     private int JoueurY;
 
+    private boolean Estmort = false ;
     private int id;
 
     // Création d'un constructeur Joueurs pour pouvoir instancier des joueurs
@@ -84,10 +86,22 @@ public class Joueurs {
     }
 
     /* Création d'une méthode pour permettre aux joueurs de détruire une case de leur choix après s'être déplacés,
-    en rentrant un nom de case constitué d'une lettre et d'un chiffre  */
-
+    en rentrant un nom de case constitué d'une lettre et d'un chiffre
     public void DétruireCases() {
-        //
+        //*/
+
+    // Verifier si les cases adjacente sont disponibles //
+    public void JoueurBloque(int[][] Carte){
+        if (Carte[JoueurY-1][JoueurX]!=0 &&
+                Carte[JoueurY+1][JoueurX]!=0 &&
+                Carte[JoueurY][JoueurX +1]!=0 &&
+                Carte[JoueurY][JoueurX -1]!=0) {
+            Estmort = true ;
+
+        }
+
     }
+
+
 
 }
