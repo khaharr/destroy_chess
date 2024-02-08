@@ -1,7 +1,5 @@
 package Model;
 
-import com.sun.tools.javac.Main;
-
 import java.util.List;
 
 public class Carte {
@@ -18,16 +16,16 @@ public class Carte {
         // Création d'une matrice de 12 lignes et 13 colonnes
         int[][] plateau = new int[12][13];
         // Récupération des joueurs depuis les statistiques de jeu
-        List<Joueurs> joueurs = statDeJeu.getJoueur();
+        List<Joueurs> joueurs = statDeJeu.RecupererJoueurs();
 
         // Remplissage de la matrice selon les spécifications
         for (int x = 0; x < plateau.length; x++) {
             for (int y = 0; y < plateau[x].length; y++) {
                 if ((x == 0) | (x == 11) | (y == 0) | (y == 12)) {
-                    // Remplir les bords avec des 2
+                    // Remplir les bords avec des 2 pour définir les limites de la carte
                     plateau[x][y] = 2;
                 } else {
-                    // Remplir le reste avec des 0
+                    // Remplir le reste avec des 0 pour définir les cases jouables
                     plateau[x][y] = 0;
                 }
             }
@@ -43,6 +41,7 @@ public class Carte {
 
     // Méthode pour afficher la carte
     public static void AfficherMap(int[][] Plateau) {
+        // Génération de listes pour pouvoir resortir les charactères en fonction d'un index
         char[] Lettre = {'a', 'b', 'c', 'd', 'e','f','g','h','i', 'j'};
         int [] Chiffre = {1,2,3,4,5,6,7,8,9,10,11};
         if (!AffichageActif) {
@@ -51,25 +50,25 @@ public class Carte {
             // Parcours de la carte ligne par ligne
             for (int Ligne = 0; Ligne < Plateau.length; Ligne++) {
                 if(Ligne > 0 & Ligne < 11){
-                    // Affichage des lettres pour les lignes intermédiaires
+                    // Affichage d'une des lettres de la liste au début des lignes
                     System.out.print(Lettre[Ligne-1]);
                 }
 
                 for (int Colonnes = 0; Colonnes < Plateau[Ligne].length; Colonnes++) {
                     if(Ligne == 0 && Colonnes > 0 & Colonnes < 12){
-                        // Affichage des chiffres pour la première ligne
-                        System.out.print(Chiffre[Colonnes-1]);
+                        // Affichage du  chiffre de l'index courant au début des colonnes
+                        System.out.print(Colonnes);
                         System.out.print("\t");
                     }
                     else if (Plateau[Ligne][Colonnes] == 0) {
-                        // Remplace 0 par le caractère spécial pour la case vide
+                        // Remplace 0 par le caractère spécial pour les cases jouables
                         System.out.print("▮" + "\t");
                     } else if (Plateau[Ligne][Colonnes] == 2) {
                         // Remplace 2 par un vide pour retirer les 2
                         System.out.print("" + "\t");
                     } else if (Plateau[Ligne][Colonnes] >= 5 && Plateau[Ligne][Colonnes] <= 8) {
                         // Affichage des joueurs avec leurs couleurs respectives Si l'ID du joueur correspond à la valeur dans la case de la matrice, cela signifie que c'est la position d'un joueur.
-                        for (Joueurs joueur : statDeJeu.getJoueur()) {
+                        for (Joueurs joueur : statDeJeu.RecupererJoueurs()) {
                             if (joueur.getID() == Plateau[Ligne][Colonnes]) {
                                 System.out.print(Couleurs.Mettre(joueur.getCouleur()) +"●" + Couleurs.Mettre(0) + "\t");
                                 break;
@@ -80,7 +79,7 @@ public class Carte {
                         System.out.print(Plateau[Ligne][Colonnes] + "\t");
                     }
                 }
-                // Nouvelle ligne pour chaque ligne de la matrice
+                // saut de ligne dans l'affichage
                 System.out.println();
             }
         }

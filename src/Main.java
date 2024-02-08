@@ -24,7 +24,7 @@ public class Main {
         // Crée un objet Joueurs pour le premier joueur avec le pseudo saisi et des coordonnées initiales
         Joueurs Joueur1 = new Joueurs(pseudoJoueur1, 4, 6, 5, 5);
         // Ajoute le premier joueur à l'état du jeu
-        statDeJeu.setJoueurs(Joueur1);
+        statDeJeu.DefinirJoueurs(Joueur1);
 
         String pseudoJoueur2;
         // Demander le pseudo du deuxième joueur et vérifier sa validité
@@ -38,20 +38,20 @@ public class Main {
 
         // Crée un objet Joueurs pour le deuxième joueur avec le pseudo saisi et des coordonnées initiales
         Joueurs Joueur2 = new Joueurs(pseudoJoueur2, 6, 6, 6, 6);
-        statDeJeu.setJoueurs(Joueur2); // Ajoute le deuxième joueur à l'état du jeu
+        statDeJeu.DefinirJoueurs(Joueur2); // Ajoute le deuxième joueur à l'état du jeu
 
         int[][] CarteGeneree = Carte.Generer(); // Génère la carte de jeu
 
         Scanner scanner = new Scanner(System.in); // Crée un scanner pour la saisie utilisateur
-        boolean execution_jeu = true;
-        while (execution_jeu) { // Boucle de jeu principale
+        boolean ExecutionJeu = true;
+        while (ExecutionJeu) { // Boucle de jeu principale
             Carte.AfficherMap(CarteGeneree); // Affiche la carte de jeu
 
             // Détermine le joueur actif pour ce tour
-            Joueurs joueurActif = statDeJeu.getJoueur().get(tour % statDeJeu.getJoueur().size());
+            Joueurs joueurActif = statDeJeu.RecupererJoueurs().get(tour % statDeJeu.RecupererJoueurs().size());
 
             // Affiche le tour du joueur avec son pseudo et sa couleur respective
-            System.out.println("Tour du joueur " + Couleurs.Mettre(joueurActif.getCouleur()) + joueurActif.getPseudo() + Couleurs.Mettre(0) + " !");
+            System.out.println("Tour du joueur " + Couleurs.Mettre(joueurActif.getCouleur()) + joueurActif.getNomUtilisateur() + Couleurs.Mettre(0) + " !");
 
             // Demande au joueur de saisir une direction pour déplacer son personnage
             System.out.println("Déplacez-vous avec les touches Z (haut), S (bas), Q (gauche), D (droite)  ");

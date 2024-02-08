@@ -12,8 +12,8 @@ public class Menu {
 
     // Fonction qui permet de parcourir le menu du jeu
     public static void MenuDuJeu () {
-        boolean OuvrirMenuDuJeu = false;
         // Detecte si le menu doit s'ouvrir de nouveau
+        boolean OuvrirMenuDuJeu = false;
         // DO s'occupe de l'affichage et mise en place des inputs
         do{
             OuvrirMenuDuJeu = false;
@@ -21,10 +21,11 @@ public class Menu {
             System.out.println("          ―――――――――――――――――――――――――――");
             System.out.println("             1 - Jouer ");
             System.out.println("             2 - Règles du jeu ");
-            System.out.println("             3 - Voir les résultats des joueurs");
+            System.out.println("             3 - Scores");
             System.out.println("             4 - Quitter");
             System.out.println("          ―――――――――――――――――――――――――――");
             Scanner scanner = new Scanner(System.in);
+            // permet au joueur d'inserer un chiffre entre 1 et 4 qui ont chacun une action
             try {
                 int choix = scanner.nextInt();
                 if (choix == 1){
@@ -70,6 +71,8 @@ public class Menu {
         System.out.println("LES RÈGLES DU JEU");
         System.out.println("≻───── ⋆✩⋆ ─────≺");
         System.out.println("1.Chaque joueur effectue deux actions par tour : se déplacer d'une case et détruire une case de son choix.");
+        System.out.println("2.Le dernier joueur pouvant encore se déplacer gagne.");
+        System.out.println("3.Un joueur ne peut pas occuper une case détruite ou occupé.");
         System.out.println("Les joueurs n'ont pas le droit de se déplacer en diagonale.");
     }
 
