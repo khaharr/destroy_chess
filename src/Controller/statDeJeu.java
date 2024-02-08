@@ -1,5 +1,7 @@
-package Model;
+package Controller;
 // Import des classes nécessaires
+
+import Model.Joueurs;
 
 import java.util.ArrayList;
 import java.util.List;

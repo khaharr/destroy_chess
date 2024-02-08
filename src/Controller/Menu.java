@@ -1,12 +1,13 @@
-package Model;
+package Controller;
 
 // Import des classes nécessaires
+import Model.Joueurs;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
 // Import de la méthode EffacerCarte de la classe Carte depuis le package Model
-import static Model.Carte.EffacerCarte;
-import static Model.statDeJeu.RecupererJoueurs;
+
 
 // Définition de la classe Menu
 public class Menu {
