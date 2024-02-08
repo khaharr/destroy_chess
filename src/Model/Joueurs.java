@@ -1,6 +1,10 @@
 package Model;
 
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 //Création d'un objet Joueurs
 public class Joueurs {
 
@@ -11,7 +15,7 @@ public class Joueurs {
     private int JoueurX;
     private int JoueurY;
 
-    private static boolean Estmort = false ;
+    private boolean Estmort = false ;
     private int id;
 
     // Création d'un constructeur Joueurs pour pouvoir instancier des joueurs
@@ -83,6 +87,58 @@ public class Joueurs {
         }
 
         // renvoi de la carte
+        return carte;
+    }
+
+    /**
+     * Permet de détruire la case préciser par l'utilisateur
+     *
+     * @param carte
+     * @return
+     */
+    public int[][] DetruireCase (int[][] carte)
+    {
+        Map<String, Integer> TraduitDonnee = new HashMap<>();
+        TraduitDonnee.put("A", 1);
+        TraduitDonnee.put("B", 2);
+        TraduitDonnee.put("C", 3);
+        TraduitDonnee.put("D", 4);
+        TraduitDonnee.put("E", 5);
+        TraduitDonnee.put("F", 6);
+        TraduitDonnee.put("G", 7);
+        TraduitDonnee.put("H", 8);
+        TraduitDonnee.put("I", 9);
+        TraduitDonnee.put("J", 10);
+
+        System.out.println("Choissiez une case à  détruire. Example : A1");
+        Scanner DemanderAuJoueur = new Scanner(System.in);
+        boolean Recommencer = true;
+        do {
+            try{
+                String Reponse = DemanderAuJoueur.nextLine().toUpperCase();
+                String Ligne = Reponse.substring(0, 1);
+                String Colonne = Reponse.substring(1);
+
+                if(TraduitDonnee.get(Ligne) == null)
+                {
+                    System.out.println("Vous avez entrée une valeur inconnu veuillez mettre une valeur entre A et J");
+                } else {
+                    Integer LigneTraduite = TraduitDonnee.get(Ligne);
+                    if(carte[LigneTraduite][Integer.parseInt(Colonne)] == 0) {
+                        carte[LigneTraduite][Integer.parseInt(Colonne)] = 1;
+                        Recommencer = false;
+                    } else {
+                        System.out.println("Case déjà occupé");
+                    }
+                }
+
+
+            } catch (Exception e)
+            {
+
+            }
+        } while (Recommencer);
+
         return carte;
     }
 

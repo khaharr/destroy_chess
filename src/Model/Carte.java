@@ -43,7 +43,6 @@ public class Carte {
     public static void AfficherMap(int[][] Plateau) {
         // Génération de listes pour pouvoir resortir les charactères en fonction d'un index
         char[] Lettre = {'a', 'b', 'c', 'd', 'e','f','g','h','i', 'j'};
-        int [] Chiffre = {1,2,3,4,5,6,7,8,9,10,11};
         if (!AffichageActif) {
             // Si l'affichage est désactivé, quitte la méthode sans rien afficher
         } else {
@@ -63,6 +62,9 @@ public class Carte {
                     else if (Plateau[Ligne][Colonnes] == 0) {
                         // Remplace 0 par le caractère spécial pour les cases jouables
                         System.out.print("▮" + "\t");
+                    }else if (Plateau[Ligne][Colonnes] == 1) {
+                        // Remplace 0 par le caractère spécial pour les cases jouables
+                        System.out.print(Couleurs.Mettre(Couleurs.Rouge) + "X" + Couleurs.Mettre(Couleurs.Defaut) + "\t");
                     } else if (Plateau[Ligne][Colonnes] == 2) {
                         // Remplace 2 par un vide pour retirer les 2
                         System.out.print("" + "\t");
@@ -70,7 +72,7 @@ public class Carte {
                         // Affichage des joueurs avec leurs couleurs respectives Si l'ID du joueur correspond à la valeur dans la case de la matrice, cela signifie que c'est la position d'un joueur.
                         for (Joueurs joueur : statDeJeu.RecupererJoueurs()) {
                             if (joueur.getID() == Plateau[Ligne][Colonnes]) {
-                                System.out.print(Couleurs.Mettre(joueur.getCouleur()) +"●" + Couleurs.Mettre(0) + "\t");
+                                System.out.print(Couleurs.Mettre(joueur.getID() -2) +"●" + Couleurs.Mettre(0) + "\t");
                                 break;
                             }
                         }

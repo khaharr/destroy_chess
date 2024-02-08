@@ -1,11 +1,12 @@
 package Model;
 
 // Import des classes nécessaires
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 // Import de la méthode EffacerCarte de la classe Carte depuis le package Model
 import static Model.Carte.EffacerCarte;
+import static Model.statDeJeu.RecupererJoueurs;
 
 // Définition de la classe Menu
 public class Menu {
@@ -23,25 +24,36 @@ public class Menu {
             System.out.println("             2 - Règles du jeu ");
             System.out.println("             3 - Scores");
             System.out.println("             4 - Quitter");
+            System.out.println("             5 - Les meilleurs joueurs");
+            System.out.println("             6 - Les PIRES !! Joueurs");
             System.out.println("          ―――――――――――――――――――――――――――");
             Scanner scanner = new Scanner(System.in);
             // permet au joueur d'inserer un chiffre entre 1 et 4 qui ont chacun une action
             try {
                 int choix = scanner.nextInt();
                 if (choix == 1){
-                    SelectionPseudoEtCouleur();
+                    break;
                 }
                 else if(choix == 2){
                     ReglesDuJeu();
                     OuvrirMenuDuJeu = true;
                 }
                 else if (choix == 3){
-                    VoirResultatsJoueurs();
+                    VoirResultatsJoueurs(0);
                     OuvrirMenuDuJeu = true;
                 }
                 else if (choix == 4){
                     QuitterLeJeu();
                 }
+                else if (choix == 5){
+                    VoirResultatsJoueurs(1);
+                    OuvrirMenuDuJeu = true;
+                }
+                else if (choix == 6){
+                    VoirResultatsJoueurs(2);
+                    OuvrirMenuDuJeu = true;
+                }
+
                 else {
                     System.out.println("Vous ne pouvez pas mettre un chiffre incorrect");
                 }
@@ -75,31 +87,32 @@ public class Menu {
     }
 
     public  static String EntrerPseudo(){
-        String pseudoJoueur;
         Scanner scanner1 = new Scanner(System.in);
+        boolean NomUtilisateurExist = false;
         do {
             System.out.println("Entrez le pseudo du joueur   (entre 2 et 10 caractères) :");
-            pseudoJoueur = scanner1.nextLine();
+            String pseudoJoueur = scanner1.nextLine().toLowerCase();
             if (pseudoJoueur.length() < 2 || pseudoJoueur.length() > 10) {
                 System.out.println("Le pseudo doit contenir entre 2 et 10 caractères !");
             }else {
-                return pseudoJoueur;
+                if(!statDeJeu.RecupererJoueurs().isEmpty()){
+                    for(Joueurs joueur : statDeJeu.RecupererJoueurs())
+                    {
+                        if (!pseudoJoueur.trim().equalsIgnoreCase(joueur.getNomUtilisateur().trim())){
+                            NomUtilisateurExist = true;
+                        } else {
+                            System.out.println("Nom d'utilisateur déjà utilisé");
+                        }
+                    }
+                } else {
+                    return pseudoJoueur;
+                }
+                if(NomUtilisateurExist){
+                    return pseudoJoueur;
+                }
             }
-        } while (pseudoJoueur.length() < 2 || pseudoJoueur.length() > 10);
-        return null;
+        } while (true);
     }
-
-
-    // Permettre au joueur de définir un pseudo ainsi que sa couleur
-    public static void SelectionPseudoEtCouleur(){
-        // Déclaration des variables
-        boolean VerifPseudo1 = false;
-        boolean VerifPseudo2 = false;
-        String PseudoChoisi1;
-        String PseudoChoisi2;
-
-    }
-
 
     // Visualiser les règles du jeu
     public static void ReglesDuJeu() {
@@ -119,13 +132,37 @@ public class Menu {
     }
 
     // Voir les résultats des joueurs
-    public static void VoirResultatsJoueurs() {
-        // code pour afficher les résultats des joueurs
-        // Par exemple, vous pouvez parcourir la liste des joueurs et afficher leurs résultats
-        // Ex :
-        // for (Joueur joueur : listeDesJoueurs) {
-        //     System.out.println(joueur.getpseudo() + " -Victoires : " + joueur.getNombreVictoires());
-        // }
+    public static void VoirResultatsJoueurs(int filtre) {
         System.out.println("Voici les résultats des joueurs :");
+        Map<String,Integer> Liste = Score.AfficherTableauScore();
+        LinkedHashMap<String, Integer> Trier = new LinkedHashMap<>();
+
+        if(filtre == 2)
+        {
+            Trier = Liste.entrySet().stream().sorted(Map.Entry.comparingByValue()).collect(Collectors.toMap(
+                    Map.Entry::getKey,
+                    Map.Entry::getValue,
+                    (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+        } else if (filtre == 1)
+        {
+            Trier = Liste.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).collect(Collectors.toMap(
+                    Map.Entry::getKey,
+                    Map.Entry::getValue,
+                    (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+        }
+
+        int Tour = 10;
+        if(Liste.size() < 10 ){
+            Tour = Liste.size();
+        }
+        for (int i = 0; i < Tour; i++) {
+            if(filtre == 0)
+            {
+                System.out.println(Liste.keySet().toArray()[i] + " : " + Liste.values().toArray()[i] + " Points");
+            } else {
+
+                System.out.println(Trier.keySet().toArray()[i] + " : " + Trier.values().toArray()[i] + " Points");
+            }
+        }
     }
 }
