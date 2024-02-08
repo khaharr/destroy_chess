@@ -12,8 +12,8 @@ public class Menu {
 
     // Fonction qui permet de parcourir le menu du jeu
     public static void MenuDuJeu () {
-        boolean OuvrirMenuDuJeu = false;
         // Detecte si le menu doit s'ouvrir de nouveau
+        boolean OuvrirMenuDuJeu = false;
         // DO s'occupe de l'affichage et mise en place des inputs
         do{
             OuvrirMenuDuJeu = false;
@@ -21,9 +21,11 @@ public class Menu {
             System.out.println("          ―――――――――――――――――――――――――――");
             System.out.println("             1 - Jouer ");
             System.out.println("             2 - Règles du jeu ");
-            System.out.println("             3 - Quitter");
+            System.out.println("             3 - Scores");
+            System.out.println("             4 - Quitter");
             System.out.println("          ―――――――――――――――――――――――――――");
             Scanner scanner = new Scanner(System.in);
+            // permet au joueur d'inserer un chiffre entre 1 et 4 qui ont chacun une action
             try {
                 int choix = scanner.nextInt();
                 if (choix == 1){
@@ -34,6 +36,10 @@ public class Menu {
                     OuvrirMenuDuJeu = true;
                 }
                 else if (choix == 3){
+                    VoirResultatsJoueurs();
+                    OuvrirMenuDuJeu = true;
+                }
+                else if (choix == 4){
                     QuitterLeJeu();
                 }
                 else {
@@ -51,31 +57,13 @@ public class Menu {
     // Permettre au joueur de définir un pseudo ainsi que sa couleur
     public static void SelectionPseudoEtCouleur(){
         // Déclaration des variables
-        boolean VerifPseudo = false;
-        String PseudoChoisi;
-
-        do {
-            // Affichage de la demande pour choisir le pseudo
-            System.out.println("Veuillez choisir votre pseudo jeune jardinier !");
-            System.out.println("    ―――――――――――――――――――――――――――――――――――");
-
-            // Enregistrement du pseudo du joueur
-            Scanner pseudo = new Scanner(System.in);
-            PseudoChoisi = pseudo.next();
-
-            // Vérification si le pseudo contient uniquement des lettres et si sa longueur est comprise entre 2 et 10 caractères
-            if (PseudoChoisi.matches("[a-zA-Z]+") && PseudoChoisi.length() >= 2 && PseudoChoisi.length() <= 10) {
-                System.out.println("Pseudo validé avec succès !");
-                System.out.println(Couleurs.Mettre(6) + PseudoChoisi + Couleurs.Mettre(0));
-                VerifPseudo = false; // Le pseudo est valide, on sort de la boucle
-            } else {
-                // Le pseudo contient des caractères invalides ou n'est pas dans la plage de longueur spécifiée
-                System.out.println("Veuillez choisir un pseudo valide entre 2 et 10 caractères maximum, contenant uniquement des lettres !");
-                VerifPseudo = true; // On continue la boucle pour redemander un pseudo
-            }
-        } while (VerifPseudo); // Répéter tant que le pseudo n'est pas valide
+        boolean VerifPseudo1 = false;
+        boolean VerifPseudo2 = false;
+        String PseudoChoisi1;
+        String PseudoChoisi2;
 
     }
+
 
     // Visualiser les règles du jeu
     public static void ReglesDuJeu() {
@@ -83,6 +71,8 @@ public class Menu {
         System.out.println("LES RÈGLES DU JEU");
         System.out.println("≻───── ⋆✩⋆ ─────≺");
         System.out.println("1.Chaque joueur effectue deux actions par tour : se déplacer d'une case et détruire une case de son choix.");
+        System.out.println("2.Le dernier joueur pouvant encore se déplacer gagne.");
+        System.out.println("3.Un joueur ne peut pas occuper une case détruite ou occupé.");
         System.out.println("Les joueurs n'ont pas le droit de se déplacer en diagonale.");
     }
 
@@ -90,5 +80,16 @@ public class Menu {
     public static void QuitterLeJeu(){
         System.out.println("Vous avez quitté le jeu DESTROY THE GARDENER SPACE");
         System.exit(0);
+    }
+
+    // Voir les résultats des joueurs
+    public static void VoirResultatsJoueurs() {
+        // code pour afficher les résultats des joueurs
+        // Par exemple, vous pouvez parcourir la liste des joueurs et afficher leurs résultats
+        // Ex :
+        // for (Joueur joueur : listeDesJoueurs) {
+        //     System.out.println(joueur.getpseudo() + " -Victoires : " + joueur.getNombreVictoires());
+        // }
+        System.out.println("Voici les résultats des joueurs :");
     }
 }

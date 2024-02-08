@@ -11,12 +11,12 @@ public class statDeJeu {
     static List<Joueurs> ListeDeJoueurs = new ArrayList<>();
 
     // Méthode pour obtenir la liste des joueurs
-    public static List<Joueurs> getJoueur(){
+    public static List<Joueurs> RecupererJoueurs(){
         return ListeDeJoueurs;
     }
 
     // Méthode pour ajouter un joueur à la liste
-    public static void setJoueurs(Joueurs nouveauJoueur) {
+    public static void DefinirJoueurs(Joueurs nouveauJoueur) {
         ListeDeJoueurs.add(nouveauJoueur);
     }
 }

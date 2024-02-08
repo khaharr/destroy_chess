@@ -3,7 +3,7 @@ package Model;
 //Création d'un objet Joueurs
 public class Joueurs {
 
-    private String Pseudo;
+    private String NomUtilisateur;
     private int Couleur;
     private int Score;
     private int JoueurX;
@@ -12,8 +12,8 @@ public class Joueurs {
     private int id;
 
     // Création d'un constructeur Joueurs pour pouvoir instancier des joueurs
-    public Joueurs (String pseudo, int couleur, int joueurX, int joueurY, int id) {
-        this.Pseudo = pseudo;
+    public Joueurs (String NomUtilisateur, int couleur, int joueurX, int joueurY, int id) {
+        this.NomUtilisateur = NomUtilisateur;
         this.Couleur = couleur;
         this.Score = 0;
         JoueurX =  joueurX;
@@ -21,7 +21,10 @@ public class Joueurs {
         this.id = id;
     }
 
-
+    // Méthode pour obtenir le pseudo du joueur
+    public String getNomUtilisateur() {
+        return this.NomUtilisateur;
+    }
     /* Création des getters et setters pour pouvoir récupérer et modifier les attributs des joueurs, qui ont été
     encapsulés (définis en privé pour pas qu'ils ne soient manipulés en dehors de la classe sans ça) */
 
@@ -50,18 +53,29 @@ public class Joueurs {
         JoueurY = joueurY;
     }
 
-
-
-
-    /* Création d'une méthode pour permettre aux joueurs de se déplacer, en faisant varier leurs coordonnées x et y
-    dans la carte, lorsqu'ils pressent une certaine touche. */
+    /**
+     * Création d'une function pour permettre aux joueurs de se déplacer, en utilisant des coordonées relatives
+     *     dans la carte, lorsqu'ils pressent une certaine touche.
+     *
+     * @param carte
+     * @param joueurX
+     * @param joueurY
+     * @return int[][]
+     */
     public int[][] DeplacementsJoueurs (int[][] carte, int joueurX, int joueurY) {
+        //Ici on vérifie si la case voulu par l'utilisateur est disponible
         if(carte[JoueurY + joueurY][JoueurX + joueurX] == 0) {
+            // Ici on définit la case voulu par l'utilisateur par son identifiant dans les donées de la carte
             carte[JoueurY + joueurY][JoueurX + joueurX] = id;
+            //Remplacement de l'ancien place de l'utilisateur par un 0 = Case normal
             carte[JoueurY][JoueurX] = 0;
+
+            // Modification des cordonées du joueurs dans son objet
             JoueurY += joueurY;
             JoueurX += joueurX;
         }
+
+        // renvoi de la carte
         return carte;
     }
 
@@ -76,8 +90,4 @@ public class Joueurs {
         //
     }
 
-/*if (x == Joueurs.getJoueurX() && y == Joueurs.getJoueurY()) {
-        // Affiche le joueur en remplaçant la case par un point de couleur
-        System.out.print(+"●" +Couleurs.Mettre(0)+ "\t");
-        */
 }
