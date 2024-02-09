@@ -78,6 +78,12 @@ public class GestionaireDeFichier {
     {
         Map<String, String> VariableTampon = new HashMap<>();
         try {
+            File newFile = new File("src/Ressources/sauvegarde.txt");
+            if(!newFile.exists())
+            {
+                boolean success = newFile.createNewFile();
+            }
+
             Scanner FichierSauvegarde = new Scanner(new File("src/Ressources/sauvegarde.txt"));
             File file = new File("src/Ressources/sauvegarde.txt");
             while(FichierSauvegarde.hasNextLine())
