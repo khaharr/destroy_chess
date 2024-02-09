@@ -1,6 +1,6 @@
 import Controller.*;
 import Model.*; // Importe toutes les classes du package Model
-
+import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -20,8 +20,7 @@ public class Main {
 
     public static void game()
     {
-        // Variable pour compter les tours de jeu
-        int tour = 0;
+
         // Affiche le menu de jeu
         Menu.MenuDuJeu();
         // Crée un scanner pour la saisie utilisateur
@@ -52,9 +51,10 @@ public class Main {
             Joueurs joueur = new Joueurs(Pseudo,4,placementX.get(i),placementY.get(i),i+5);
             statDeJeu.DefinirJoueurs(joueur);
             Score.AjouterUtilisateur(joueur);
-//            System.out.print(NouveauJoueur.getJoueurX());
+            //System.out.print(NouveauJoueur.getJoueurX());
         }
-
+        // Variable pour compter les tours de jeu
+        int tour = statDeJeu.JoueurAléatoire();
         int[][] CarteGeneree = Carte.Generer(); // Génère la carte de jeu
 
         Scanner scanner = new Scanner(System.in); // Crée un scanner pour la saisie utilisateur
@@ -64,6 +64,7 @@ public class Main {
 
             // Détermine le joueur actif pour ce tour
             Joueurs joueurActif = statDeJeu.RecupererJoueurs().get(tour % statDeJeu.RecupererJoueurs().size());
+
 
             joueurActif.JoueurBloque(CarteGeneree);
             if(statDeJeu.CompteJoueurPlateau() == 1)

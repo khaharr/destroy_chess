@@ -2,7 +2,7 @@ package Controller;
 // Import des classes nécessaires
 
 import Model.Joueurs;
-
+import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,4 +37,13 @@ public class statDeJeu {
     public static void DefinirJoueurs(Joueurs nouveauJoueur) {
         ListeDeJoueurs.add(nouveauJoueur);
     }
+    public static int JoueurAléatoire() {
+        // génération d'une case random dans la map
+
+            Random joueur = new Random();
+            return joueur.nextInt(ListeDeJoueurs.size());
+    }
+
 }
+
+
