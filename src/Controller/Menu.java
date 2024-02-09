@@ -3,6 +3,8 @@ package Controller;
 // Import des classes nécessaires
 import Model.Joueurs;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -75,6 +77,27 @@ public class Menu {
             Scanner NbJoueur = new Scanner(System.in);
             try {
                 int choix = NbJoueur.nextInt();
+                if(choix == 1)
+                {
+                    try{
+                        String file = "src/Ressources/Ascii-art.txt";
+                        Scanner scanner = new Scanner(new File(file));
+                        scanner.useDelimiter(" ");
+
+                        while(scanner.hasNextLine())
+                        {
+                            byte[] decodedBytes = Base64.getDecoder().decode(scanner.nextLine());
+                            String decodedString = new String(decodedBytes);
+                            System.out.println(decodedString);
+                        }
+
+                        scanner.close();
+                        System.out.println();
+                        System.out.println("You look lonely, i can fix that");
+                    } catch (IOException e){
+
+                    }
+                }
                 if (choix >= 2 && choix <= 4) {
                     Verif = false;
                     return choix;
