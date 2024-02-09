@@ -109,18 +109,22 @@ public class Main {
                 switch (input) {
                     case "Z":
                         CarteGeneree = joueurActif.DeplacementsJoueurs(CarteGeneree, 0, -1); // Déplace le joueur vers le haut
+                        Carte.AfficherMap(CarteGeneree);
                         CarteGeneree = joueurActif.DetruireCase(CarteGeneree);
                         break;
                     case "Q":
                         CarteGeneree = joueurActif.DeplacementsJoueurs(CarteGeneree, -1, 0); // Déplace le joueur vers la gauche
+                        Carte.AfficherMap(CarteGeneree);
                         CarteGeneree = joueurActif.DetruireCase(CarteGeneree);
                         break;
                     case "S":
                         CarteGeneree = joueurActif.DeplacementsJoueurs(CarteGeneree, 0, 1); // Déplace le joueur vers le bas
+                        Carte.AfficherMap(CarteGeneree);
                         CarteGeneree = joueurActif.DetruireCase(CarteGeneree);
                         break;
                     case "D":
                         CarteGeneree = joueurActif.DeplacementsJoueurs(CarteGeneree, 1, 0); // Déplace le joueur vers la droite
+                        Carte.AfficherMap(CarteGeneree);
                         CarteGeneree = joueurActif.DetruireCase(CarteGeneree);
                         break;
                     case "C":

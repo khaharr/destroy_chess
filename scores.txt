@@ -1,2 +1,0 @@
-lolo=2
-khalid=5

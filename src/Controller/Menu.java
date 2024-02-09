@@ -121,7 +121,7 @@ public class Menu {
         Scanner scanner1 = new Scanner(System.in);
         boolean NomUtilisateurExist = false;
         do {
-            System.out.println("Entrez le pseudo du joueur (entre 2 et 10 caractères) :");
+            System.out.println("Joueur " + (statDeJeu.RecupererJoueurs().size() + 1) + " entre votre nom d'utilisateur (entre 2 et 10 caractères) :");
             String pseudoJoueur = scanner1.nextLine().toLowerCase();
             if (pseudoJoueur.length() < 2 || pseudoJoueur.length() > 10) {
                 System.out.println("Le pseudo doit contenir entre 2 et 10 caractères !");
@@ -160,7 +160,6 @@ public class Menu {
     public static void QuitterLeJeu(){
         System.out.println("Vous avez quitté le jeu DESTROY THE GARDENER SPACE");
         //au moment de quitter sa va enregistrer le score dans scores.txt
-        Score.SauvegarderScoresDansFichier("scores.txt");
         System.exit(0);
     }
 
