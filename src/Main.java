@@ -67,8 +67,11 @@ public class Main {
             // Détermine le joueur actif pour ce tour
             Joueurs joueurActif = statDeJeu.RecupererJoueurs().get(tour % statDeJeu.RecupererJoueurs().size());
 
-
-            joueurActif.JoueurBloque(CarteGeneree);
+                //permet de verifier si tout les joueurs sont mort
+            for (Joueurs joueur : statDeJeu.RecupererJoueurs())
+            {
+                joueur.JoueurBloque(CarteGeneree);
+            }
             if(statDeJeu.CompteJoueurPlateau() == 1)
             {
                 System.out.println("Nous avons un vainqueur");
@@ -76,7 +79,7 @@ public class Main {
                 //Score.IncrementerScore(joueurActif, 5);
                 for (Joueurs joueur : statDeJeu.RecupererJoueurs()) {
                     if(joueur.getEstMort()){
-                        Score.IncrementerScore(joueur, 2);
+                        Score.IncrementerScore(joueur, -2);
                         GestionaireDeFichier.EditerLigneDuFichier(joueur.getNomUtilisateur(), String.valueOf(Score.ConnaitreScoreDeUtilisateur(joueur.getNomUtilisateur()) + 2));
                     } else {
                         Score.IncrementerScore(joueur, 5);

@@ -1,8 +1,7 @@
+kld:10
+tom:10
 lolo:4
-khalid:10
-lolo:4
-khalid:10
-lolo:4
-khalid:10
-lolo:4
+james:4
+	khalid:4
+dsqd:0
 khalid:10

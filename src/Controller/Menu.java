@@ -121,7 +121,7 @@ public class Menu {
         Scanner scanner1 = new Scanner(System.in);
         boolean NomUtilisateurExist = false;
         do {
-            System.out.println("Entrez le pseudo du joueur   (entre 2 et 10 caractères) :");
+            System.out.println("Entrez le pseudo du joueur (entre 2 et 10 caractères) :");
             String pseudoJoueur = scanner1.nextLine().toLowerCase();
             if (pseudoJoueur.length() < 2 || pseudoJoueur.length() > 10) {
                 System.out.println("Le pseudo doit contenir entre 2 et 10 caractères !");
