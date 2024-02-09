@@ -54,4 +54,14 @@ public class Score {
         }
     }
 
+    public static void ChargerSauvegarde(Map<String, Integer> sauvegarde)
+    {
+        scoreParNom = sauvegarde;
+    }
+
+    public static int ConnaitreScoreDeUtilisateur(String utilisateur)
+    {
+        return scoreParNom.get(utilisateur);
+    }
+
 }

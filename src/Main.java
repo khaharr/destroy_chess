@@ -1,9 +1,6 @@
 import Controller.*;
 import Model.*; // Importe toutes les classes du package Model
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,22 +8,13 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        if(!Files.exists(Path.of(System.getProperty("user.home") + "/Ascii-art.txt")))
+        if(GestionaireDeFichier.CopieExiste())
         {
-            try {
-                Files.copy(Path.of("src/Ressources/Ascii-art.txt"), Path.of(System.getProperty("user.home") + "/Ascii-art.txt"));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        } else if (!Files.exists(Path.of("src/Ressources/Ascii-art.txt")))
-        {
-            try {
-                Files.copy(Path.of(System.getProperty("user.home") + "/Ascii-art.txt"), Path.of("src/Ressources/Ascii-art.txt"));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            GestionaireDeFichier.PrendreCopie();
+            Score.ChargerSauvegarde(GestionaireDeFichier.LireLignesDuFichierDeSauvegarde());
+            System.out.println("Scores chargés !");
         }
-
+        GestionaireDeFichier.asciiVerification();
         game();
     }
 
@@ -86,10 +74,16 @@ public class Main {
                 for (Joueurs joueur : statDeJeu.RecupererJoueurs()) {
                     if(joueur.getEstMort()){
                         Score.IncrementerScore(joueur, 2);
+                        GestionaireDeFichier.EditerLigneDuFichier(joueur.getNomUtilisateur(), String.valueOf(Score.ConnaitreScoreDeUtilisateur(joueur.getNomUtilisateur()) + 2));
                     } else {
                         Score.IncrementerScore(joueur, 5);
+                        GestionaireDeFichier.EditerLigneDuFichier(joueur.getNomUtilisateur(), String.valueOf(Score.ConnaitreScoreDeUtilisateur(joueur.getNomUtilisateur()) + 5));
+
                     }
                 }
+
+                GestionaireDeFichier.FaireUneCopieLocal();
+
                 statDeJeu.EffacerListeJoueurs();
                 game();
                 break;

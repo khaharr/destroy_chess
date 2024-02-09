@@ -78,24 +78,31 @@ public class Menu {
             try {
                 int choix = NbJoueur.nextInt();
                 if(choix == 1)
+                //Affiche un Easter-eggs
                 {
                     try{
+                        //On va lire le fichier ressource pour notre Ascii art
                         String file = "src/Ressources/Ascii-art.txt";
                         Scanner scanner = new Scanner(new File(file));
+                        // On défini un délimiteur dans la lecture de notre fichier
                         scanner.useDelimiter(" ");
 
+                        //On parcour le fichier ligne par ligne
                         while(scanner.hasNextLine())
                         {
+                            //On decode le fichier .txt encoder en Base64
                             byte[] decodedBytes = Base64.getDecoder().decode(scanner.nextLine());
                             String decodedString = new String(decodedBytes);
+
+                            //On envoie l'ascii art décodé
                             System.out.println(decodedString);
                         }
-
+                        // On fini notre lecture du fichier
                         scanner.close();
                         System.out.println();
                         System.out.println("You look lonely, i can fix that");
                     } catch (IOException e){
-
+                        System.out.println("Le fichier n'est pas trouvé");
                     }
                 }
                 if (choix >= 2 && choix <= 4) {
