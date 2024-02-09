@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static Controller.Menu.MenuDuJeu;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -23,7 +25,7 @@ public class Main {
         // Variable pour compter les tours de jeu
         int tour = 0;
         // Affiche le menu de jeu
-        Menu.MenuDuJeu();
+        MenuDuJeu();
         // Crée un scanner pour la saisie utilisateur
 
         int NombreJoueur = Menu.NombreJoueurPartie();
@@ -96,6 +98,9 @@ public class Main {
                 // Demande au joueur de saisir une direction pour déplacer son personnage
                 System.out.println("Déplacez-vous avec les touches Z (haut), S (bas), Q (gauche), D (droite)  ");
 
+                // Permettre de quitter la partie et de retourner dans le menu//
+                System.out.println("(c)-  Quitter");
+
                 String input = scanner.nextLine().toUpperCase(); // Lit l'entrée utilisateur et la convertit en majuscules
                 switch (input) {
                     case "Z":
@@ -113,6 +118,9 @@ public class Main {
                     case "D":
                         CarteGeneree = joueurActif.DeplacementsJoueurs(CarteGeneree, 1, 0); // Déplace le joueur vers la droite
                         CarteGeneree = joueurActif.DetruireCase(CarteGeneree);
+                        break;
+                    case "C":
+                        MenuDuJeu();
                         break;
                     default:
                         System.out.println("Veuillez ne choisir que parmi les choix qui vous sont proposés!!!"); // Affiche un message d'erreur si l'entrée est invalide
