@@ -80,10 +80,10 @@ public class Main {
                 for (Joueurs joueur : statDeJeu.RecupererJoueurs()) {
                     if(joueur.getEstMort()){
                         Score.IncrementerScore(joueur, -2);
-                        GestionaireDeFichier.EditerLigneDuFichier(joueur.getNomUtilisateur(), String.valueOf(Score.ConnaitreScoreDeUtilisateur(joueur.getNomUtilisateur()) + 2));
+                        GestionaireDeFichier.EditerLigneDuFichier(joueur.getNomUtilisateur(), String.valueOf(Score.ConnaitreScoreDeUtilisateur(joueur.getNomUtilisateur())));
                     } else {
                         Score.IncrementerScore(joueur, 5);
-                        GestionaireDeFichier.EditerLigneDuFichier(joueur.getNomUtilisateur(), String.valueOf(Score.ConnaitreScoreDeUtilisateur(joueur.getNomUtilisateur()) + 5));
+                        GestionaireDeFichier.EditerLigneDuFichier(joueur.getNomUtilisateur(), String.valueOf(Score.ConnaitreScoreDeUtilisateur(joueur.getNomUtilisateur())));
 
                     }
                 }

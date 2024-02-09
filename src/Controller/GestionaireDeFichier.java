@@ -130,7 +130,7 @@ public class GestionaireDeFichier {
             Scanner Originale = new Scanner(new File(System.getProperty("user.home")+"/sauvegarde.txt"));
 
             File file = new File("src/Ressources/sauvegarde.txt");
-            FileWriter fw = new FileWriter(file, true);
+            FileWriter fw = new FileWriter(file, false);
             BufferedWriter bw = new BufferedWriter(fw);
             while(Originale.hasNextLine())
             {

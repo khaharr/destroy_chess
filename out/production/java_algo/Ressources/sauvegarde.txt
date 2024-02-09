@@ -1,12 +1,5 @@
-lolo:4
-khalid:10
-lolo:4
-khalid:10
-lolo:4
-khalid:10
-lolo:4
-khalid:10
-lolo:4
-khalid:10
-lolo:4
-khalid:10
+momo:5
+popo:-2
+poulet:-2
+momo:5
+popo:-2
